@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_SOPT">
         <activity
+            android:name=".ui.sign.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sign.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
