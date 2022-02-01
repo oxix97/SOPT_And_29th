@@ -2,10 +2,12 @@ package com.example.android_sopt.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.data.main.FollowerData
 import com.example.android_sopt.util.AdapterDecoration
+import com.example.android_sopt.util.ItemTouchHelperCallback
 
 class FollowerFragment :
     BaseViewUtil.BaseFragment<com.example.android_sopt.databinding.FragmentFollowerBinding>(R.layout.fragment_follower) {
@@ -63,7 +65,6 @@ class FollowerFragment :
                 "유저4입니다 하하!!"
             )
         )
-
         followerAdapter = FollowerAdapter()
         binding.rvFollowerContainer.adapter = followerAdapter
         binding.rvFollowerContainer.addItemDecoration(
@@ -75,7 +76,12 @@ class FollowerFragment :
                 10,
             )
         )
+
         followerAdapter.followerList.addAll(followerList)
+
+        val itemTouchHelperCallback = ItemTouchHelperCallback(followerAdapter)
+        val helper = ItemTouchHelper(itemTouchHelperCallback)
+        helper.attachToRecyclerView(binding.rvFollowerContainer)
         followerAdapter.notifyDataSetChanged()
     }
 }

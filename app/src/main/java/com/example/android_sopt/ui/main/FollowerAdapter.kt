@@ -9,8 +9,10 @@ import com.example.android_sopt.R
 import com.example.android_sopt.data.main.FollowerData
 import com.example.android_sopt.databinding.ItemFollowerBinding
 import com.example.android_sopt.ui.detail.DetailActivity
+import com.example.android_sopt.util.ItemTouchHelperListener
 
-class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>() {
+class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>(),
+    ItemTouchHelperListener {
     val followerList = mutableListOf<FollowerData>()
 
     inner class FollowerViewHolder(private val binding: ItemFollowerBinding) :
@@ -46,4 +48,16 @@ class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>
     }
 
     override fun getItemCount(): Int = followerList.size
+    override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+        val item = followerList[from_position]
+        followerList.removeAt(from_position)
+        followerList.add(to_position, item)
+        notifyItemMoved(from_position, to_position)
+        return true
+    }
+
+    override fun onItemSwipe(position: Int) {
+        followerList.removeAt(position)
+        notifyItemRemoved(position)
+    }
 }
