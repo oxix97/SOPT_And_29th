@@ -5,6 +5,7 @@ import android.view.View
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.data.main.FollowerData
+import com.example.android_sopt.util.AdapterDecoration
 
 class FollowerFragment :
     BaseViewUtil.BaseFragment<com.example.android_sopt.databinding.FragmentFollowerBinding>(R.layout.fragment_follower) {
@@ -62,8 +63,18 @@ class FollowerFragment :
                 "유저4입니다 하하!!"
             )
         )
+
         followerAdapter = FollowerAdapter()
         binding.rvFollowerContainer.adapter = followerAdapter
+        binding.rvFollowerContainer.addItemDecoration(
+            AdapterDecoration(
+                requireActivity(),
+                R.drawable.line_divider,
+                0,
+                0,
+                10,
+            )
+        )
         followerAdapter.followerList.addAll(followerList)
         followerAdapter.notifyDataSetChanged()
     }
