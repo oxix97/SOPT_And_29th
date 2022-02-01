@@ -1,10 +1,12 @@
 package com.example.android_sopt.ui.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_sopt.data.main.RepositoryData
 import com.example.android_sopt.databinding.ItemRepositoryBinding
+import com.example.android_sopt.ui.detail.DetailActivity
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
     val repositoryList = mutableListOf<RepositoryData>()

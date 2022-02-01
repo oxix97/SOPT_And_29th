@@ -2,6 +2,8 @@ package com.example.android_sopt.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.data.main.RepositoryData
@@ -69,6 +71,7 @@ class RepositoryFragment :
             )
         repositoryAdapter = RepositoryAdapter()
         binding.rvRepositoryContainer.adapter = repositoryAdapter
+        binding.rvRepositoryContainer.layoutManager = GridLayoutManager(requireContext(), 2)
         repositoryAdapter.repositoryList.addAll(repositoryList)
         repositoryAdapter.notifyDataSetChanged()
     }
