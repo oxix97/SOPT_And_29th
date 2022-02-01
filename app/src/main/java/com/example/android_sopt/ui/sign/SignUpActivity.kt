@@ -2,7 +2,6 @@ package com.example.android_sopt.ui.sign
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.android_sopt.MainActivity
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.databinding.ActivitySignUpBinding

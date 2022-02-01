@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="mainViewModel"
-            type="com.example.android_sopt.MainActivity" />
+            type="com.example.android_sopt.ui.main.MainActivity" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <TextView
             android:id="@+id/tv_main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="SOPTHub"
             android:textColor="#E91E63"
             android:textSize="28sp"
@@ -31,205 +31,151 @@
             android:id="@+id/iv_main_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/user2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_main_title" />
 
-        <TextView
-            android:id="@+id/tv_main_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="이름"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/iv_main_profile"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_profile" />
-
-        <TextView
-            android:id="@+id/tv_main_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="나이"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/tv_main_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_name" />
-
-        <TextView
-            android:id="@+id/tv_main_mbti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="MBTI"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/tv_main_age"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_age" />
-
-        <TextView
-            android:id="@+id/tv_main_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="@{mainViewModel.name}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/iv_main_profile"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_profile" />
-
-        <TextView
-            android:id="@+id/tv_main_age_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{mainViewModel.age}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/tv_main_name_text"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_name_text" />
-
-        <TextView
-            android:id="@+id/tv_main_mbti_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{mainViewModel.mbti}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/tv_main_name_text"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_age_text" />
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/ll_main_name_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginVertical="30dp"
-            app:layout_constraintBottom_toTopOf="@id/iv_main_github_link"
+            app:layout_constraintStart_toStartOf="@id/iv_main_profile"
+            app:layout_constraintEnd_toEndOf="@id/iv_main_profile"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/iv_main_profile">
+
+            <TextView
+                android:id="@+id/tv_main_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:includeFontPadding="false"
+                android:layout_margin="5dp"
+                android:text="이름"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_main_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="@{mainViewModel.name}"
+                android:includeFontPadding="false"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/iv_main_profile"
+                app:layout_constraintTop_toBottomOf="@id/iv_main_profile" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_main_age_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_main_name_container">
+
+            <TextView
+                android:id="@+id/tv_main_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_margin="5dp"
+                android:text="나이"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_main_age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@{mainViewModel.age}"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_main_mbti_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_main_age_container">
+
+            <TextView
+                android:id="@+id/tv_main_mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="MBTI"
+                android:includeFontPadding="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_main_mbti_text"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:text="@{mainViewModel.mbti}"
+                android:includeFontPadding="false"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_main_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="간단한 소개 안녕하세여~~~~"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_mbti">
+            app:layout_constraintTop_toBottomOf="@id/ll_main_mbti_container" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~ 첫번째"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~두번째"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~세번째"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~네번째"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~마지막 두번"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="간단한 소개 안녕하세여~~~~ 마지막"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-
-        <ImageView
-            android:id="@+id/iv_main_github_link"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_main_btn_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_main_git"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_about">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_main_follower"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:text="팔로워\n목록" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_main_repository"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:text="레포지토리\n목록" />
+
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fr_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_main_btn_container"
+            tools:context=".ui.main.FollowerFragment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
