@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.android_sopt.MainActivity
+import com.example.android_sopt.ui.main.MainActivity
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.databinding.ActivitySignInBinding
