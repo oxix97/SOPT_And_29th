@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.android_sopt.ui.main.MainActivity
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
@@ -20,9 +21,18 @@ class SignInActivity :
     }
 
     override fun initView() {
+        setImage()
         login()
         signup()
         setResultSignUp()
+    }
+
+    private fun setImage() {
+        Glide
+            .with(this)
+            .load(R.drawable.img_github)
+            .override(64,64)
+            .into(binding.ivSigninTitle)
     }
 
     private fun login() {
@@ -38,7 +48,7 @@ class SignInActivity :
     }
 
     private fun signup() {
-        binding.btnSigninSignup.setOnClickListener {
+        binding.tvSigninSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             registerLauncher.launch(intent)
         }
