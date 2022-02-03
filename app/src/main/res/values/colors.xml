@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="sopt_black">#333333</color>
+    <color name="sopt_edit_text_hint">#acb5bd</color>
+    <color name="sopt_pink">#f658a6</color>
+    <color name="sopt_edit_border">#d0d0d0</color>
+    <color name="sopt_non_selected_background">#f2f2f2</color>
+    <color name="sopt_selected_background">#fab24c</color>
+    <color name="sopt_bottom_sheet_text">#8f9090</color>
+    <color name="sopt_signup_text">#828282</color>
+
 </resources>
