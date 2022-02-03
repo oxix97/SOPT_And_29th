@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="profile"
+            type="com.example.android_sopt.ui.main.ProfileFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.ProfileFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_profile_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/sopt_pink"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_icon_setting_2_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_profile_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/group_814" />
+
+            <TextView
+                android:id="@+id/tv_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/regular_font_14_sopt_black"
+                android:layout_margin="5dp"
+                android:includeFontPadding="false"
+                android:text="@{profile.name}"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_profile"
+                tools:text="Jongchan Lee" />
+
+
+            <TextView
+                android:id="@+id/tv_profile_id"
+                style="@style/regular_font_14_sopt_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:includeFontPadding="false"
+                android:text="@{profile.id}"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
+                tools:text="oxix97" />
+
+            <TextView
+                android:id="@+id/tv_profile_title"
+                style="@style/regular_font_14_sopt_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:includeFontPadding="false"
+                android:text="@{profile.title}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_id"
+                tools:text="초보 개발자 이종찬" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_profile_btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/cl_profile_container">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_profile_follower"
+                android:layout_width="wrap_content"
+                android:background="@drawable/bg_profile_button_selector"
+                android:layout_height="match_parent"
+                android:textColor="@color/btn_profile_white_black"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:text="팔로워 목록" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_profile_repository"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_profile_button_selector"
+                android:textColor="@color/btn_profile_white_black"
+                android:layout_weight="1"
+                android:text="레포지토리 목록" />
+
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fr_profile_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_profile_btn_container"
+            tools:context=".ui.main.FollowerFragment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
