@@ -1,13 +1,21 @@
 package com.example.android_sopt.ui.main.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
-import com.example.android_sopt.data.main.FollowerData
+import com.example.android_sopt.data.remote.api.git.GitService
+import com.example.android_sopt.data.remote.model.git.ResponseFollowerListData
+import com.example.android_sopt.data.remote.model.git.ResponseGetUserData
+import com.example.android_sopt.data.remote.model.git.UserData
 import com.example.android_sopt.util.AdapterDecoration
 import com.example.android_sopt.util.ItemTouchHelperCallback
+import com.example.android_sopt.util.shortToast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FollowerFragment :
     BaseViewUtil.BaseFragment<com.example.android_sopt.databinding.FragmentFollowerBinding>(R.layout.fragment_follower) {
@@ -19,52 +27,64 @@ class FollowerFragment :
     }
 
     override fun initView() {
-        setFollowerItem()
+        initNetwork()
     }
 
-    private fun setFollowerItem() {
-        val followerList = listOf<FollowerData>(
-            FollowerData(
-                R.drawable.user1,
-                "유저1",
-                "유저1입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user2,
-                "유저2",
-                "유저2입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user3,
-                "유저3",
-                "유저3입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user4,
-                "유저4",
-                "유저4입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user1,
-                "유저1",
-                "유저1입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user2,
-                "유저2",
-                "유저2입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user3,
-                "유저3",
-                "유저3입니다 하하!!"
-            ),
-            FollowerData(
-                R.drawable.user4,
-                "유저4",
-                "유저4입니다 하하!!"
-            )
-        )
+    private fun initNetwork() {
+        val call: Call<ResponseFollowerListData> = GitService.gitUserService.getFollowerList()
+
+        call.enqueue(object : Callback<ResponseFollowerListData> {
+            override fun onResponse(
+                call: Call<ResponseFollowerListData>,
+                response: Response<ResponseFollowerListData>
+            ) {
+                if (response.isSuccessful) {
+                    val userList = response.body()
+                    setUserData(userList)
+                } else {
+                    requireActivity().shortToast("팔로워 리스트 업로드 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseFollowerListData>, t: Throwable) {
+                Log.e("error", "$t")
+            }
+
+        })
+    }
+
+    private fun setUserData(userList: ResponseFollowerListData?) {
+        val userDataList = mutableListOf<UserData>()
+        for (item in userList!!) {
+            val call: Call<ResponseGetUserData> =
+                GitService.gitUserService.getUserInformation(item.login)
+            call.enqueue(object : Callback<ResponseGetUserData> {
+                override fun onResponse(
+                    call: Call<ResponseGetUserData>,
+                    response: Response<ResponseGetUserData>
+                ) {
+                    if (response.isSuccessful) {
+                        val data = response.body()
+                        val temp = UserData(
+                            data?.login.toString(),
+                            data?.bio.toString(),
+                            data?.avatarUrl.toString(),
+                        )
+                        userDataList.add(temp)
+                    } else {
+                        requireActivity().shortToast("불러오기 실패")
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseGetUserData>, t: Throwable) {
+                    Log.e("error", "$t")
+                }
+            })
+        }
+        setFollowerItem(userDataList)
+    }
+
+    private fun setFollowerItem(userDataList: MutableList<UserData>) {
         followerAdapter = FollowerAdapter()
         binding.rvFollowerContainer.adapter = followerAdapter
         binding.rvFollowerContainer.addItemDecoration(
@@ -77,7 +97,7 @@ class FollowerFragment :
             )
         )
 
-        followerAdapter.followerList.addAll(followerList)
+        followerAdapter.followerList.addAll(userDataList)
 
         val itemTouchHelperCallback = ItemTouchHelperCallback(followerAdapter)
         val helper = ItemTouchHelper(itemTouchHelperCallback)

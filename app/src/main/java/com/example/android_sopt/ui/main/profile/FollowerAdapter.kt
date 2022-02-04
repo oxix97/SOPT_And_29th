@@ -5,31 +5,37 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.android_sopt.data.main.FollowerData
+import com.example.android_sopt.data.remote.api.git.GitService
+import com.example.android_sopt.data.remote.model.git.ResponseFollowerListDataItem
+import com.example.android_sopt.data.remote.model.git.ResponseGetUserData
+import com.example.android_sopt.data.remote.model.git.UserData
 import com.example.android_sopt.databinding.ItemFollowerBinding
 import com.example.android_sopt.ui.detail.DetailActivity
 import com.example.android_sopt.util.ItemTouchHelperListener
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>(),
     ItemTouchHelperListener {
-    val followerList = mutableListOf<FollowerData>()
+    val followerList = mutableListOf<UserData>()
 
     inner class FollowerViewHolder(private val binding: ItemFollowerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: FollowerData) {
+        fun onBind(data: UserData) {
             with(binding) {
                 Glide
-                    .with(itemView.context)
+                    .with(itemView)
                     .load(data.img)
                     .override(48, 48)
                     .into(ivFollowerProfile)
-                tvFollowerName.text = data.name
-                tvFollowerTitle.text = data.title
+                tvFollowerName.text = data.login
+                tvFollowerTitle.text = data.bio
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra("img", data.img)
-                    intent.putExtra("name", data.name)
+                    intent.putExtra("name", data.login)
                     itemView.context.startActivity(intent)
                 }
             }
