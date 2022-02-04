@@ -1,4 +1,4 @@
-package com.example.android_sopt.data.remote.api
+package com.example.android_sopt.data.remote.api.login
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

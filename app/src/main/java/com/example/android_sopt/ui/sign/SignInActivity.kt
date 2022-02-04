@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.android_sopt.ui.main.MainActivity
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
-import com.example.android_sopt.data.remote.api.ApiService
+import com.example.android_sopt.data.remote.api.login.ApiService
 import com.example.android_sopt.data.remote.model.login.RequestLoginData
 import com.example.android_sopt.data.remote.model.login.ResponseLoginData
 import com.example.android_sopt.databinding.ActivitySignInBinding

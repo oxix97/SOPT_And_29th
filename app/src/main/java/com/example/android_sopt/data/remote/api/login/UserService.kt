@@ -1,4 +1,4 @@
-package com.example.android_sopt.data.remote.api
+package com.example.android_sopt.data.remote.api.login
 
 import com.example.android_sopt.data.remote.model.user.ResponseUserData
 import retrofit2.Call
