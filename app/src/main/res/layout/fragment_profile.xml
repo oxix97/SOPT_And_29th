@@ -6,13 +6,13 @@
     <data>
         <variable
             name="profile"
-            type="com.example.android_sopt.ui.main.ProfileFragment" />
+            type="com.example.android_sopt.ui.main.profile.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.ProfileFragment">
+        tools:context=".ui.main.profile.ProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_profile_container"
@@ -129,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_profile_btn_container"
-            tools:context=".ui.main.FollowerFragment" />
+            tools:context=".ui.main.profile.FollowerFragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

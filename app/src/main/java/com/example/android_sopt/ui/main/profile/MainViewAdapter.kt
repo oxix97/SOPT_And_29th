@@ -1,4 +1,4 @@
-package com.example.android_sopt.ui.main
+package com.example.android_sopt.ui.main.profile
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

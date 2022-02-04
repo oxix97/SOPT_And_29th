@@ -1,11 +1,10 @@
-package com.example.android_sopt.ui.main
+package com.example.android_sopt.ui.main.profile
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.android_sopt.R
 import com.example.android_sopt.data.main.FollowerData
 import com.example.android_sopt.databinding.ItemFollowerBinding
 import com.example.android_sopt.ui.detail.DetailActivity
