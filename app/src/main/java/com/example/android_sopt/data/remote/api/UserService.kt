@@ -6,11 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 interface UserService {
-    @Headers("Content-Type:application/json")
+
     @GET("user/{id}")
     fun getUserCheckId(): Call<ResponseUserData>
 
-    @Headers("Content-Type:application/json")
     @GET("user?email={email}")
     fun getUserCheckEmail(): Call<ResponseUserData>
 }
