@@ -5,6 +5,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.databinding.ActivityMainBinding
+import com.example.android_sopt.ui.main.camera.CameraFragment
+import com.example.android_sopt.ui.main.home.HomeFragment
+import com.example.android_sopt.ui.main.profile.MainViewAdapter
+import com.example.android_sopt.ui.main.profile.ProfileFragment
 
 class MainActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {

@@ -1,9 +1,8 @@
-package com.example.android_sopt.ui.main
+package com.example.android_sopt.ui.main.profile
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android_sopt.R
 import com.example.android_sopt.base.baseutil.BaseViewUtil
 import com.example.android_sopt.data.main.RepositoryData

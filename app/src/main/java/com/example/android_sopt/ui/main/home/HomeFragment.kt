@@ -1,4 +1,4 @@
-package com.example.android_sopt.ui.main
+package com.example.android_sopt.ui.main.home
 
 import android.os.Bundle
 import android.view.View
