@@ -35,8 +35,8 @@ class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra("img", data.login)
-                    intent.putExtra("name", data.htmlUrl)
+                    intent.putExtra("img", data.avatarUrl)
+                    intent.putExtra("name", data.login)
                     itemView.context.startActivity(intent)
                 }
             }
