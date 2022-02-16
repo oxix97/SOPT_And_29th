@@ -15,6 +15,7 @@ import com.example.android_sopt.data.remote.api.login.ApiService
 import com.example.android_sopt.data.remote.model.login.RequestLoginData
 import com.example.android_sopt.data.remote.model.login.ResponseLoginData
 import com.example.android_sopt.databinding.ActivitySignInBinding
+import com.example.android_sopt.util.SOPTSharedPreferences
 import com.example.android_sopt.util.shortToast
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -36,6 +37,8 @@ class SignInActivity :
         login()
         signup()
         setResultSignUp()
+        initClickEvent()
+        isAutoLogin()
     }
 
     private fun setImage() {
@@ -76,6 +79,26 @@ class SignInActivity :
 
     }
 
+    private fun initClickEvent() {
+        with(binding) {
+            cbtnSigninAutoLogin.setOnClickListener {
+                cbtnSigninAutoLogin.isSelected = !cbtnSigninAutoLogin.isSelected
+                SOPTSharedPreferences.setAutoLogin(
+                    this@SignInActivity,
+                    cbtnSigninAutoLogin.isSelected
+                )
+            }
+        }
+    }
+
+    private fun isAutoLogin() {
+        if (SOPTSharedPreferences.getAutoLogin(this)) {
+            shortToast("자동로그인")
+            startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+            finish()
+        }
+    }
+
     private fun initNetwork() {
         val requestLoginData = RequestLoginData(
             id = binding.etSigninId.text.toString(),
@@ -102,5 +125,4 @@ class SignInActivity :
     private fun pwChecker(): Boolean = binding.etSigninPassword.text.isNullOrBlank()
 
     private fun idChecker(): Boolean = binding.etSigninId.text.isNullOrBlank()
-
 }
