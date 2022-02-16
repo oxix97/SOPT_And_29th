@@ -19,7 +19,7 @@ class DetailActivity :
     }
 
     private fun getIntentExtra() {
-        val img = intent.getIntExtra("img", 99)
+        val img = intent.getStringExtra("img")
         val name = intent.getStringExtra("name")
         with(binding) {
             Glide

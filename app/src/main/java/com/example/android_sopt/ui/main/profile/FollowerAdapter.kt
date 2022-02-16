@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android_sopt.data.remote.api.git.GitService
+import com.example.android_sopt.data.remote.model.git.ResponseFollowerListData
 import com.example.android_sopt.data.remote.model.git.ResponseFollowerListDataItem
 import com.example.android_sopt.data.remote.model.git.ResponseGetUserData
 import com.example.android_sopt.data.remote.model.git.UserData
@@ -18,23 +19,23 @@ import retrofit2.Response
 
 class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>(),
     ItemTouchHelperListener {
-    val followerList = mutableListOf<UserData>()
+    val followerList = mutableListOf<ResponseFollowerListDataItem>()
 
     inner class FollowerViewHolder(private val binding: ItemFollowerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: UserData) {
+        fun onBind(data: ResponseFollowerListDataItem) {
             with(binding) {
                 Glide
                     .with(itemView)
-                    .load(data.img)
+                    .load(data.avatarUrl)
                     .override(48, 48)
                     .into(ivFollowerProfile)
                 tvFollowerName.text = data.login
-                tvFollowerTitle.text = data.bio
+                tvFollowerTitle.text = data.htmlUrl
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra("img", data.img)
+                    intent.putExtra("img", data.avatarUrl)
                     intent.putExtra("name", data.login)
                     itemView.context.startActivity(intent)
                 }
