@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.android_sopt.ui.main.MainActivity
 import com.example.android_sopt.R
@@ -15,13 +16,16 @@ import com.example.android_sopt.data.remote.model.login.RequestLoginData
 import com.example.android_sopt.data.remote.model.login.ResponseLoginData
 import com.example.android_sopt.databinding.ActivitySignInBinding
 import com.example.android_sopt.util.shortToast
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class SignInActivity :
     BaseViewUtil.BaseAppCompatActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private lateinit var registerLauncher: ActivityResultLauncher<Intent>
+    private lateinit var list: ResponseLoginData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -78,27 +82,21 @@ class SignInActivity :
             password = binding.etSigninPassword.text.toString(),
         )
 
-        val call: Call<ResponseLoginData> = ApiService.loginService.postLogin(requestLoginData)
-
-        call.enqueue(object : Callback<ResponseLoginData> {
-            override fun onResponse(
-                call: Call<ResponseLoginData>,
-                response: Response<ResponseLoginData>
-            ) {
-                if (response.isSuccessful) {
-                    val data = response.body()?.data
+        lifecycleScope.launch {
+            try {
+                list = ApiService.loginService.postLogin(requestLoginData)
+                if (list.success) {
                     shortToast("로그인 성공")
                     startActivity(Intent(this@SignInActivity, MainActivity::class.java))
                 } else {
                     shortToast("로그인 실패")
                 }
+
+            } catch (e: Exception) {
+                Log.e("실패", "$e")
             }
 
-            override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
-                Log.e("NetworkTest", "error$t")
-            }
-
-        })
+        }
     }
 
     private fun pwChecker(): Boolean = binding.etSigninPassword.text.isNullOrBlank()
