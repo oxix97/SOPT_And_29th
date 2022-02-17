@@ -111,6 +111,7 @@ class SignInActivity :
                 if (list.success) {
                     shortToast("로그인 성공")
                     startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+                    finish()
                 } else {
                     shortToast("로그인 실패")
                 }
