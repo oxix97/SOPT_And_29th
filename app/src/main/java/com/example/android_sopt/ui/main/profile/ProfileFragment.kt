@@ -1,5 +1,6 @@
 package com.example.android_sopt.ui.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
@@ -20,6 +21,7 @@ class ProfileFragment :
     override fun initView() {
         initFragment()
         setProfile()
+        initSetting()
     }
 
     private fun setProfile() {
@@ -32,7 +34,12 @@ class ProfileFragment :
                 .override(64, 64)
                 .into(ivProfileProfile)
         }
+    }
 
+    private fun initSetting() {
+        binding.ivProfileSetting.setOnClickListener {
+            startActivity(Intent(requireActivity(), SettingActivity::class.java))
+        }
     }
 
     private fun initFragment() {
@@ -42,6 +49,11 @@ class ProfileFragment :
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.add(R.id.fr_profile_container, followerFragment).commit()
 
+        initFollowerFragment(followerFragment)
+        initRepositoryFragment(repositoryFragment)
+    }
+
+    private fun initFollowerFragment(followerFragment: FollowerFragment) {
         with(binding) {
             btnProfileFollower.setOnClickListener {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -50,7 +62,12 @@ class ProfileFragment :
                 btnProfileRepository.isSelected = false
                 transaction.commit()
             }
+        }
+    }
 
+
+    private fun initRepositoryFragment(repositoryFragment: RepositoryFragment) {
+        with(binding) {
             btnProfileRepository.setOnClickListener {
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fr_profile_container, repositoryFragment)

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_container"
+    app:startDestination="@id/fragment_on_boding1">
+
+    <fragment
+        android:id="@+id/fragment_on_boding1"
+        android:name="com.example.android_sopt.ui.main.onboding.OnBodingFragment1"
+        android:label="첫번째 화면"
+        tools:layout="@layout/fragment_on_boding1">
+
+        <action
+            android:id="@+id/navComp1_to_navComp2"
+            app:destination="@id/fragment_on_boding2" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_on_boding2"
+        android:name="com.example.android_sopt.ui.main.onboding.OnBodingFragment2"
+        android:label="두번째 화면"
+        tools:layout="@layout/fragment_on_boding2">
+
+        <action
+            android:id="@+id/navComp2_to_navComp3"
+            app:destination="@id/fragment_on_boding3"
+            app:popUpTo="@id/fragment_on_boding1" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_on_boding3"
+        android:name="com.example.android_sopt.ui.main.onboding.OnBodingFragment3"
+        android:label="세번째 화면"
+        tools:layout="@layout/fragment_on_boding3">
+        <action android:id="@+id/nav_onboding3" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/activity_signin"
+        android:name="com.example.android_sopt.ui.sign.SignInActivity"
+        tools:layout="@layout/activity_sign_in" />
+
+</navigation>

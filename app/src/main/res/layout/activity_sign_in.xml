@@ -79,6 +79,15 @@
             app:layout_constraintStart_toStartOf="@id/tv_signin_id"
             app:layout_constraintTop_toBottomOf="@id/tv_signin_password" />
 
+        <CheckBox
+            android:id="@+id/cbtn_signin_autoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="자동 로그인"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_signin_password" />
+
         <LinearLayout
             android:id="@+id/ll_signin_signup"
             android:layout_width="0dp"

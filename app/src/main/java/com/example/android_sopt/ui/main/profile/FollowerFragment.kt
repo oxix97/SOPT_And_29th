@@ -57,6 +57,9 @@ class FollowerFragment :
                     0, 0, 10,
                 )
             )
+            val itemTouchHelperCallback = ItemTouchHelperCallback(followerAdapter)
+            val helper = ItemTouchHelper(itemTouchHelperCallback)
+            helper.attachToRecyclerView(binding.rvFollowerContainer)
         }
         followerAdapter.followerList.addAll(followerList)
     }
